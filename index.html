@@ -1,17 +1,35 @@
 <html ng-app = "ToDo">
 <head>
 	<title>Awesome To-Do App</title>
+	<style type="text/css">
+		.done {
+			text-decoration: line-through;
+			color: #ccc;
+		}
+	</style>
 </head>
 <body>
 	<div ng-controller = "todoController">
-
+		<form name = 'todoForm' ng-submit = "addToDo()" >
+			<input type = 'text' name = 'newToDO' ng-model = 'newToDo' required >
+			<button ng-disabled = "todoForm.$invalid">Go</button>
+		</form>
+		<button ng-click = 'clearCompleted()'>Clear Form</button>
+		<ul>
+			<li ng-repeat = "todo in todos">
+				<input type = "checkbox" ng-model = "todo.done">
+				<span ng-class = "{'done' : todo.done}">{{todo.title}}</span>
+			</li>
+		</ul>
 	</div>
+
+
 
 <!-- third party scripts -->
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 	<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- native js files -->
-	<script src = "js/todoCtrl"></script>
+	<script src = "js/todoCtrl.js"></script>
 </body>
 </html>
