@@ -14,6 +14,13 @@ angular
 		$scope.clearCompleted = function() {
 			$scope.todos = $scope.todos.filter(function (item){
 				return !item.done;
-			});
+			});		
 		};
+		$scope.flipToDoDone = function(todo) {
+			if (todo.done) {
+				todo.done = false;
+			} else {
+				todo.done = true;
+			}		
+		}; 
 	}]);

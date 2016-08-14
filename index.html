@@ -7,20 +7,30 @@
 			color: #ccc;
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 	<div ng-controller = "todoController">
-		<form name = 'todoForm' ng-submit = "addToDo()" >
-			<input type = 'text' name = 'newToDO' ng-model = 'newToDo' required >
-			<button ng-disabled = "todoForm.$invalid">Go</button>
-		</form>
-		<button ng-click = 'clearCompleted()'>Clear Form</button>
-		<ul>
-			<li ng-repeat = "todo in todos">
-				<input type = "checkbox" ng-model = "todo.done">
-				<span ng-class = "{'done' : todo.done}">{{todo.title}}</span>
-			</li>
-		</ul>
+		<div class="well">
+			<form name = 'todoForm' ng-submit = "addToDo()" >
+				<div class="form-group">
+					<label for = "newToDo">Enter A task</label>
+					<input type = 'text' class = 'form-control' id= 'newToDo' name = 'newToDo' ng-model = 'newToDo' required >
+				</div>
+				<button class = "form-group btn btn-success" ng-disabled = "todoForm.$invalid">Add</button>
+			</form>
+		</div>		
+		
+		<div class="well">
+			<h3>Click a task to toggle complete/incomplete</h3>
+			<ol class = "list-control">
+				<li ng-repeat = "todo in todos">
+					<!-- <input type = "checkbox" ng-model = "todo.done"> -->
+					<button ng-click = "flipToDoDone(todo)" class = "btn" ng-class = "{'btn-success' : todo.done , 'btn-warning' : !todo.done }">{{todo.title}}</span>
+				</li>
+			</ol>
+		</div>
+		<button class = "btn btn-danger" ng-click = 'clearCompleted()'>Clear Completed Task</button>
 	</div>
 
 
